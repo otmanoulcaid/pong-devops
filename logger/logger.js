@@ -19,7 +19,8 @@ export class Logger
 		});
 	}
 
-	#formatter(metadata) {
+	#formatter(metadata)
+	{
 		const { ip, uri, method, responseTime, statusCode, message } = metadata;
 
 		return `
@@ -46,20 +47,5 @@ Response Time: ${responseTime || '?'} - Status Code: ${statusCode || '?'}
 	error(metadata)
 	{
 		this.logger.error(this.#formatter(metadata))
-	}
-
-	fatal(metadata)
-	{
-		this.logger.error(this.#formatter(metadata))
-	}
-
-	trace(metadata)
-	{
-		this.logger.error(this.#formatter(metadata))
-	}
-
-	child()
-	{
-		return this
 	}
 }
