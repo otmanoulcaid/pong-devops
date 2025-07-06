@@ -1,0 +1,11 @@
+services:
+  elasticsearch:
+    image: elasticsearch:oo
+    build: ./elasticsearch
+    ports:
+      - "9200:9200"
+
+  logstash:
+    image: logstash:oo
+    build: ./logstash
+
