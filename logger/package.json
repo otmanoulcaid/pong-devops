@@ -1,0 +1,11 @@
+{
+  "name": "logger",
+  "version": "1.0.0",
+  "main": "logger.js",
+  "type": "module",
+  "dependencies": {
+    "fastify": "^5.4.0",
+    "pino": "^9.7.0",
+    "winston": "^3.17.0"
+  }
+}
