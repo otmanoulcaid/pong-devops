@@ -1,10 +1,15 @@
 #!/bin/bash
 
-curl https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-9.0.3-linux-x86_64.tar.gz > /opt/elasticsearch.tar.gz
+cd /home/elasticsearch/
 
-tar -xvzf /opt/elasticsearch.tar.gz
+curl https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.9.3-linux-x86_64.tar.gz > elasticsearch.tar.gz
 
-mv elasticsearch-9.0.3 /opt/elasticsearch
-ln -s /opt/elasticsearch/bin/elasticsearch /bin/elasticsearch
+tar -xvzf /home/elasticsearch/elasticsearch.tar.gz
 
-elasticsearch
+cat << EOF > /home/elasticsearch/elasticsearch-7.9.3/config/elasticsearch.yml
+network.host: 0.0.0.0
+http.port: 9200
+discovery.type: single-node
+EOF
+
+./elasticsearch-7.9.3/bin/elasticsearch
