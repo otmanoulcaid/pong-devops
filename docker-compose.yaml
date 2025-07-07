@@ -5,10 +5,38 @@ services:
     container_name: elasticsearch
     ports:
       - "9200:9200"
+    init: true
 
   logstash:
     build: ./logstash
     image: logstash:oo
     container_name: logstash
+    volumes:
+      - logger-logs:/logs
     depends_on:
       - elasticsearch
+      - fastify
+    init: true
+
+  kibana:
+    build: ./kibana
+    image: kibana:oo
+    container_name: kibana
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    init: true
+
+  fastify:
+    build: ./logger
+    image: logger:oo
+    container_name: logger
+    ports:
+      - "3000:3000"
+    volumes:
+      - logger-logs:/app/logs
+    init: true
+
+volumes:
+  logger-logs:
