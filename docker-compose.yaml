@@ -1,11 +1,14 @@
 services:
   elasticsearch:
-    image: elasticsearch:oo
     build: ./elasticsearch
+    image: elasticsearch:oo
+    container_name: elasticsearch
     ports:
       - "9200:9200"
 
   logstash:
-    image: logstash:oo
     build: ./logstash
-
+    image: logstash:oo
+    container_name: logstash
+    depends_on:
+      - elasticsearch
