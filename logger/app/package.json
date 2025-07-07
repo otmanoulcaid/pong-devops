@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "logger.js",
   "type": "module",
+  "scripts": {
+    "dev": "node index"
+  },
   "dependencies": {
     "fastify": "^5.4.0",
     "pino": "^9.7.0",

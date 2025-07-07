@@ -1,5 +1,5 @@
 import Fastify from "fastify";
-import { Logger } from "./logger.js";
+import { Logger } from "./logger/logger.js";
 
 const fastify = Fastify({
     logger: false
@@ -25,6 +25,6 @@ fastify.get('/test', (req, res) => {
     res.send({ message: 'response sent'} )
 })
 
-fastify.listen({ port: 3000 }, () => {
+fastify.listen({ port: 3000, host: '0.0.0.0' }, () => {
     console.log('server is runing');
 })
