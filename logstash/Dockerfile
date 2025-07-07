@@ -2,9 +2,13 @@ FROM debian:stable-slim
 
 RUN apt update && apt install curl -y
 
-COPY tools/logstash.conf /logstash/logstash.conf
 COPY tools/setup.sh /
+COPY tools/logstash.conf /logstash/logstash.conf
 
-RUN chmod +x setup.sh
+RUN adduser --home /home/logstash logstash && \
+    adduser logstash root && \
+    chmod +x /setup.sh
+
+USER logstash
 
 ENTRYPOINT [ "/setup.sh" ]
