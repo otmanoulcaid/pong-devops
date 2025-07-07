@@ -8,5 +8,7 @@ tar -xvzf /home/kibana/kibana.tar.gz
 cat << EOF >> /home/kibana/kibana-9.0.3/config/kibana.yml
 server.host: 0.0.0.0
 server.port: 5601
+elasticsearch.hosts: ["http://elasticsearch:9200"]
 EOF
+
 ./kibana-9.0.3/bin/kibana
