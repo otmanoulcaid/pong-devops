@@ -33,9 +33,25 @@ services:
     image: logger:oo
     container_name: logger
     ports:
-      - "3000:3000"
+      - "3030:3000"
     volumes:
       - logger-logs:/app/logs
+    init: true
+
+  prometheus:
+    build: ./prometheus
+    image: prometheus:oo
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    init: true
+
+  grafana:
+    build: ./grafana
+    image: grafana:oo
+    container_name: grafana
+    ports:
+      - "3000:3000"
     init: true
 
 volumes:
