@@ -5,6 +5,7 @@ services:
     container_name: elasticsearch
     ports:
       - "9200:9200"
+    mem_limit: 1g
     init: true
 
   logstash:
