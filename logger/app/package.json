@@ -1,14 +1,18 @@
 {
   "name": "logger",
   "version": "1.0.0",
-  "main": "logger.js",
+  "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "node index"
+    "dev": "nodemon"
   },
   "dependencies": {
     "fastify": "^5.4.0",
     "pino": "^9.7.0",
+    "prom-client": "^15.1.3",
     "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
