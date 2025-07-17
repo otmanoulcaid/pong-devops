@@ -1,7 +1,6 @@
 services:
   elasticsearch:
-    build: ./elasticsearch
-    image: elasticsearch:oo
+    image: elasticsearch:9.0.3
     container_name: elasticsearch
     ports:
       - "9200:9200"
@@ -9,8 +8,7 @@ services:
     init: true
 
   logstash:
-    build: ./logstash
-    image: logstash:oo
+    image: logstash:9.0.3
     container_name: logstash
     volumes:
       - logger-logs:/logs
@@ -20,8 +18,7 @@ services:
     init: true
 
   kibana:
-    build: ./kibana
-    image: kibana:oo
+    image: kibana:9.0.3
     container_name: kibana
     ports:
       - "5601:5601"
@@ -40,16 +37,14 @@ services:
     init: true
 
   prometheus:
-    build: ./prometheus
-    image: prometheus:oo
+    image: prom/prometheus:main
     container_name: prometheus
     ports:
       - "9090:9090"
     init: true
 
   grafana:
-    build: ./grafana
-    image: grafana:oo
+    image: grafana/grafana
     container_name: grafana
     ports:
       - "3000:3000"
