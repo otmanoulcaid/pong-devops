@@ -1,15 +1,16 @@
-FROM debian:stable-slim
+FROM debian:stable-slim AS builder
 
-RUN apt update && apt install curl -y
+RUN apt update && apt install curl -y && \
+curl https://artifacts.elastic.co/downloads/kibana/kibana-9.0.3-linux-x86_64.tar.gz > /kibana.tar.gz && \
+tar -xvzf /kibana.tar.gz
 
-COPY tools/setup.sh /
-COPY tools/kibana.yml /kibana.yml
+FROM alpine:3.18
 
-RUN adduser --home /home/kibana kibana && \
-    adduser kibana root && \
-    chmod +x /setup.sh
+COPY --from=builder /kibana-9.0.3/ /home/kibana/
 
+RUN adduser -D kibana && chown kibana:kibana /home/kibana
 
 USER kibana
+WORKDIR /home/kibana
 
-ENTRYPOINT [ "/setup.sh" ]
+ENTRYPOINT [ "./bin/kibana" ]
