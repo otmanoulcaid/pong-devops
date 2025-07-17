@@ -4,7 +4,10 @@ services:
     container_name: elasticsearch
     ports:
       - "9200:9200"
-    mem_limit: 1g
+      - "9300:9300"
+    volumes:
+      - ./elasticsearch/tools/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    mem_limit: 2g
     init: true
 
   logstash:
@@ -41,6 +44,8 @@ services:
     container_name: prometheus
     ports:
       - "9090:9090"
+    volumes:
+      - "./prometheus/tools/prometheus.yml:/etc/prometheus/prometheus.yml"
     init: true
 
   grafana:
